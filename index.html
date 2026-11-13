@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Health Risk Predictor - ML-powered health risk assessment tool">
+  <title>Health Risk Predictor — ML Health Assessment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h1 class="logo-text">Health Risk Predictor</h1>
+      </div>
+      <nav class="nav-links">
+        <a href="#predictor">Predict</a>
+        <a href="#about">About</a>
+        <a href="#how-it-works">How It Works</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <span class="hero-badge">🧠 Machine Learning Powered</span>
+      <h2 class="hero-title">Predict Your<br><span class="gradient-text">Health Risk</span> Instantly</h2>
+      <p class="hero-subtitle">Enter your health parameters and let our trained ML model assess your risk level in seconds.</p>
+      <a href="#predictor" class="hero-cta">Start Prediction ➜</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><span class="stat-number">6</span><span class="stat-label">Input Parameters</span></div>
+      <div class="stat-card"><span class="stat-number">94%</span><span class="stat-label">Model Accuracy</span></div>
+      <div class="stat-card"><span class="stat-number">&lt;1s</span><span class="stat-label">Prediction Time</span></div>
+    </div>
+  </section>
+
+  <section class="predictor-section" id="predictor">
+    <div class="section-header">
+      <span class="section-tag">Prediction Engine</span>
+      <h2 class="section-title">Enter Your Health Data</h2>
+      <p class="section-desc">Fill in the fields below and click predict to get your risk assessment.</p>
+    </div>
+    <div class="predictor-grid">
+      <div class="form-card" id="form-card">
+        <form id="predict-form" autocomplete="off">
+          <div class="form-grid">
+            <div class="input-group"><label for="input-age">👤 Age</label><input type="number" id="input-age" placeholder="e.g. 35" min="1" max="120" required><span class="input-hint">Years (1–120)</span></div>
+            <div class="input-group"><label for="input-bmi">⚖️ BMI</label><input type="number" id="input-bmi" placeholder="e.g. 24.5" step="0.1" min="10" max="60" required><span class="input-hint">Body Mass Index (10–60)</span></div>
+            <div class="input-group"><label for="input-bp">💓 Blood Pressure</label><input type="number" id="input-bp" placeholder="e.g. 120" min="60" max="250" required><span class="input-hint">Systolic mmHg (60–250)</span></div>
+            <div class="input-group"><label for="input-glucose">🩸 Glucose Level</label><input type="number" id="input-glucose" placeholder="e.g. 100" min="50" max="400" required><span class="input-hint">mg/dL (50–400)</span></div>
+            <div class="input-group"><label for="input-lifestyle">🏃 Lifestyle</label><select id="input-lifestyle" required><option value="" disabled selected>Select lifestyle</option><option value="active">Active</option><option value="moderate">Moderate</option><option value="sedentary">Sedentary</option></select></div>
+            <div class="input-group"><label for="input-smoking">🚬 Smoking</label><select id="input-smoking" required><option value="" disabled selected>Select option</option><option value="yes">Yes</option><option value="no">No</option></select></div>
+          </div>
+          <button type="submit" class="btn-predict" id="btn-predict"><span class="btn-text">Predict Risk</span><span class="btn-loader" id="btn-loader"></span></button>
+        </form>
+      </div>
+      <div class="result-wrapper">
+        <div class="result-card hidden" id="result-card">
+          <div class="result-icon" id="result-icon"></div>
+          <h3 class="result-label" id="result-label"></h3>
+          <p class="result-level" id="result-level"></p>
+          <div class="result-bar-track"><div class="result-bar-fill" id="result-bar-fill"></div></div>
+          <p class="result-score-text" id="result-score-text"></p>
+          <div class="chart-container">
+            <canvas id="riskChart"></canvas>
+          </div>
+          <p class="result-note">Based on the given health parameters</p>
+          <div class="result-factors" id="result-factors"></div>
+          
+          <div class="ai-container hidden" id="ai-container">
+            <div class="ai-header">
+              <span class="ai-badge">✨ AI Preventative Insights</span>
+            </div>
+            <div class="ai-content" id="ai-content"></div>
+          </div>
+        </div>
+        <div class="result-placeholder" id="result-placeholder">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <p>Your prediction result will appear here</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="section-header">
+      <span class="section-tag">Overview</span>
+      <h2 class="section-title">About the Project</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-card"><div class="about-icon">🎯</div><h4>Objective</h4><p>Predict whether an individual is at Low or High health risk using key vital parameters and lifestyle data.</p></div>
+      <div class="about-card"><div class="about-icon">📊</div><h4>Dataset</h4><p>Trained on anonymised clinical health records with age, BMI, blood pressure, glucose, and lifestyle indicators.</p></div>
+      <div class="about-card"><div class="about-icon">🤖</div><h4>Model</h4><p>Uses a supervised classification algorithm (Random Forest / Logistic Regression) for accurate predictions.</p></div>
+      <div class="about-card"><div class="about-icon">✅</div><h4>Accuracy</h4><p>Achieves ~94% accuracy on the test set, validated with cross-validation and confusion-matrix analysis.</p></div>
+    </div>
+  </section>
+
+  <section class="how-section" id="how-it-works">
+    <div class="section-header">
+      <span class="section-tag">Pipeline</span>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-desc">A simple three-step pipeline from input to prediction.</p>
+    </div>
+    <div class="pipeline">
+      <div class="pipe-step"><div class="pipe-num">1</div><h4>Input Data</h4><p>User enters 6 health parameters: Age, BMI, BP, Glucose, Lifestyle &amp; Smoking status.</p></div>
+      <div class="pipe-arrow">➜</div>
+      <div class="pipe-step"><div class="pipe-num">2</div><h4>ML Model</h4><p>Data is fed to a trained classification model which computes a risk score in real time.</p></div>
+      <div class="pipe-arrow">➜</div>
+      <div class="pipe-step"><div class="pipe-num">3</div><h4>Prediction</h4><p>The model outputs Low Risk or High Risk along with a confidence score.</p></div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer">
+    <p>Health Risk Predictor — Machine Learning Project © 2026</p>
+    <p class="footer-small">Built for academic demonstration purposes only. Not medical advice.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
